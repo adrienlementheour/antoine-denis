@@ -27,13 +27,16 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    '@/assets/scss/main.scss'
+    '@/assets/scss/main.scss',
+    'swiper/dist/css/swiper.css'
   ],
 
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
+    // {src: '~/plugins/vue-carousel', ssr: false}
+    { src: '~/plugins/swiper.js', ssr: false },
   ],
 
   /*
@@ -45,7 +48,16 @@ module.exports = {
       linkResolver: function(doc, ctx) {
         return '/'
       }
-    }]
+    }],
+    [
+      'nuxt-sass-resources-loader',
+      [
+          '~/assets/scss/abstracts/_functions.scss',
+          '~/assets/scss/abstracts/_mixins.scss',
+          '~/assets/scss/abstracts/_placeholders.scss',
+          '~/assets/scss/abstracts/_variables.scss'
+      ]
+    ]
   ],
 
   /*

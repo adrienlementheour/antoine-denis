@@ -1,0 +1,15 @@
+// @font-face{
+@font-face{
+    font-family: 'suisseintl';
+    src: url('~static/fonts/SuisseIntl-Regular.woff2') format('woff2'),
+         url('~static/fonts/SuisseIntl-Regular.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face{
+    font-family: 'suisseintl';
+    src: url('~static/fonts/SuisseIntl-RegularItalic.woff2') format('woff2'),
+         url('~static/fonts/SuisseIntl-RegularItalic.woff') format('woff');
+    font-weight: 500;
+    font-style: italic;
+}

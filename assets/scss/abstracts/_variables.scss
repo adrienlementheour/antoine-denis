@@ -1,9 +1,15 @@
 // Variables //
+$grey: #eeeeee;
+$primary: #0000ff;
+$primary-light: #0909fe;
+$secondary: #9696f4;
+$secondary-light: #bdbdf2;
+$gradient: linear-gradient(180deg, rgba(0,0,255,1) 0%, rgba(0,0,255,0) 100%);
 
 
 // Colors
-$white: rgb(255, 255, 255);
-$black: rgb(0, 0, 0);
+$white: #ffffff;
+$black: #000000;
 
 
 // Transitions
@@ -11,7 +17,7 @@ $transition: 0.3s ease-in-out;
 
 
 // Fonts
-// $font: 'font', sans-serif;
+$suisse: 'suisseintl', sans-serif;
 
 
 // Mediaqueries
@@ -27,4 +33,4 @@ $phone-small: '400px';
 // Grid
 $col: 100/12*1%;
 
-$gutter: 10px;
+$gutter: 20px;
