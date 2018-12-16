@@ -110,4 +110,27 @@ export default {
     align-items: flex-start;
     justify-content: flex-end;
 }
+
+@media (max-width: $phone) {
+    .header {
+        .container {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    }
+    .infos,
+    .wrapper-about {
+        width: 50%;
+    }
+    .infos {
+        order: 1;
+    }
+    .logo {
+        order: 3;
+        margin-top: 20px;
+    }
+    .wrapper-about {
+        order: 2;
+    }
+}
 </style>

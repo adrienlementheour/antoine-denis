@@ -83,6 +83,7 @@ export default {
 <style scoped lang='scss'>
 // Swiper
 .swiper-pagination {
+    flex: 0 0 auto;
     position: relative;
     width: auto;
     bottom: auto;

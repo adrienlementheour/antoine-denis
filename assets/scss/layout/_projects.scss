@@ -75,3 +75,15 @@
         padding: 0;
     }
 }
+@media (max-width: $phone) {
+    .project{
+        margin: 0 0 60px;
+    }
+    .project-details{
+        flex-direction: column;
+        margin-right: 25px;
+        > *{
+            margin-right: 0;
+        }
+    }
+}
