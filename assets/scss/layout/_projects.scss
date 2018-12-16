@@ -56,3 +56,22 @@
     font-weight: 500;
     font-style: italic;
 }
+
+
+@media (max-width: $desktop) {
+    .project{
+        margin: 0 0 125px;
+        padding: 0 100px;
+    }
+}
+@media (max-width: $desktop-small) {
+    .project{
+        padding: 0 50px;
+    }
+}
+@media (max-width: $tablet) {
+    .project{
+        margin: 0 0 100px;
+        padding: 0;
+    }
+}

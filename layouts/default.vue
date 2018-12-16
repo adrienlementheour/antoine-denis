@@ -1,26 +1,6 @@
 <template>
   <div>
-    <header class="header">
-      <div class="container">
-        <div class="infos">
-          <h1 class="name">Antoine Denis</h1>
-          <div v-show="showAbout" class="about-content">
-            <h2 class="job">Graphic designer, Paris</h2>
-            <a class="mail" href="mailto:contact@denisdenis.com">contact@denisdenis.com</a>
-            <div class="more-links">
-              <a class="link" href="#">Instagram</a>
-              <a class="link" href="#">Drawing library</a>
-            </div>
-          </div>
-        </div>
-        <a href="./" class="logo">
-          <svg class="icon icon-logo"><use xlink:href="#icon-logo" /></svg>
-        </a>
-        <div class="wrapper-about">
-          <a href="#" @click.stop.prevent="handleAbout">About</a>
-        </div>
-      </div>
-    </header>
+    <Header/>
     <main role="main" class="main">
       <nuxt/>
     </main>
@@ -37,92 +17,17 @@
 </template>
 
 <script>
+import Header from '~/components/Header';
+
 export default {
-    data() {
-        return {
-            showAbout: false
-        };
-    },
-    methods: {
-        handleAbout() {
-            this.showAbout = !this.showAbout;
-        }
+    components: {
+        Header
     }
 };
 </script>
 
 <style scoped lang='scss'>
-.header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 20px 0 0 0;
-    color: $secondary-light;
-    z-index: 2;
-    &:before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 270px;
-        background: $gradient;
-        z-index: -1;
-        pointer-events: none;
-    }
-    .container {
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-between;
-    }
-}
-.infos,
-.wrapper-about {
-    width: calc(50% - 39px);
-}
-.name,
-.job {
-    font-size: 1.5rem;
-    margin: 0;
-    font-weight: normal;
-}
-.job {
-    margin-top: 5px;
-}
-.mail {
-    display: inline-block;
-    margin-top: 20px;
-}
-.more-links {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    margin-top: 20px;
-    > a {
-        color: $primary-light;
-        margin-right: 20px;
-        &:last-child {
-            margin-right: 0;
-        }
-    }
-}
-.logo {
-    flex: 0 0 auto;
-    width: 78px;
-    height: 125px;
-    color: $secondary;
-    .icon {
-        width: 100%;
-        height: 100%;
-    }
-}
-.wrapper-about {
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-end;
-}
 .main {
-    padding: 270px 0 300px;
+    padding: 0 0 300px;
 }
 </style>

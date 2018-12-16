@@ -61,32 +61,11 @@
 import Prismic from 'prismic-javascript';
 
 export default {
-    // data() {
-    //     return {
-    //         swiperOption: {
-    //             loop: true,
-    //             slidesPerView: 'auto',
-    //             centeredSlides: true,
-    //             spaceBetween: 30,
-    //             pagination: {
-    //                 el: '.swiper-pagination',
-    //                 type: 'fraction'
-    //             }
-    //         }
-    //     };
-    // },
     async asyncData() {
         var apiEndpoint = 'https://antoine-denis.cdn.prismic.io/api/v2';
-        let home = {};
         let projects = {};
 
         const api = await Prismic.getApi(apiEndpoint);
-        await api
-            .query(Prismic.Predicates.at('document.type', 'home'))
-            .then(function(response) {
-                // response is the response object, response.results holds the documents
-                home = response.results;
-            });
         await api
             .query(Prismic.Predicates.at('document.type', 'projet'), {
                 orderings: '[my.projet.date desc]'
@@ -96,7 +75,7 @@ export default {
                 projects = response.results;
             });
 
-        return { home, projects };
+        return { projects };
     }
 };
 </script>
