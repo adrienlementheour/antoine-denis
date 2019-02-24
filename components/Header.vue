@@ -5,7 +5,7 @@
         <h1 v-if="layout.site_title.length == 1" class="name"><a href="./">{{ layout.site_title[0].text }}</a></h1>
         <div class="about-content">
           <h2 v-if="layout.description.length == 1" class="job">{{ layout.description[0].text }}</h2>
-          <div v-if="layout.email" class="mail">{{ layout.email_text }}</div>
+          <div v-if="layout.email_text" class="mail">{{ layout.email_text }}</div>
           <div v-if="layout.other_links.length" class="more-links">
             <a v-for="(link, linkIndex) in layout.other_links" :key="linkIndex" :href="link.other_link.url" class="link">{{ link.other_link_text }}</a>
           </div>

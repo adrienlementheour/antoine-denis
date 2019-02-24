@@ -143,8 +143,9 @@ export default {
     }
 }
 .project {
+    position: relative;
     width: calc(50% - 10px);
-    margin: 10px 0;
+    margin: 0 0 20px;
     .wrapper-video,
     img {
         width: 100%;
@@ -187,11 +188,13 @@ export default {
     }
 }
 .project-infos {
+    position: absolute;
+    top: -20px;
+    left: 0;
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    margin: 0 0 5px;
-    transition: opacity $transition;
+    line-height: 20px;
 }
 .project-details {
     display: flex;
@@ -224,6 +227,14 @@ export default {
 }
 
 @media (max-width: $phone) {
+    .project {
+        margin: 0;
+    }
+    .project-infos {
+        position: relative;
+        top: auto;
+        left: auto;
+    }
     .project-details {
         flex-direction: column;
         margin-right: 35px;
