@@ -92,7 +92,7 @@ export default {
     flex: 0 0 auto;
     width: 35px;
     height: 55px;
-    margin: -9px 0 0;
+    margin: -7px -7px 0 0;
     color: $secondary;
     .icon {
         width: 100%;
