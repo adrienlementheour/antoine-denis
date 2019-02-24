@@ -4,7 +4,7 @@ $primary: #0000ff;
 $primary-light: #0909fe;
 $secondary: #9696f4;
 $secondary-light: #bdbdf2;
-$gradient: linear-gradient(180deg, rgba(0,0,255,1) 0%, rgba(0,0,255,0) 100%);
+$gradient: linear-gradient(180deg, rgba(9, 9, 254, 1) 0%, rgba(9, 9, 254, 0.2) 60%, rgba(9, 9, 254, 0) 100%);
 
 
 // Colors
@@ -17,7 +17,8 @@ $transition: 0.3s ease-in-out;
 
 
 // Fonts
-$suisse: 'suisseintl', sans-serif;
+$suisse: 'suisseintl',
+sans-serif;
 
 
 // Mediaqueries

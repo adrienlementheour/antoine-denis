@@ -1,21 +1,20 @@
 <template>
   <header class="header">
-    <div class="container large">
+    <div class="container">
       <div class="infos">
         <h1 v-if="layout.site_title.length == 1" class="name"><a href="./">{{ layout.site_title[0].text }}</a></h1>
-        <div v-show="showAbout" class="about-content">
+        <div class="about-content">
           <h2 v-if="layout.description.length == 1" class="job">{{ layout.description[0].text }}</h2>
-          <a v-if="layout.email" :href="layout.email.url" class="mail">{{ layout.email_text }}</a>
-          <div class="more-links">
+          <div v-if="layout.email" class="mail">{{ layout.email_text }}</div>
+          <div v-if="layout.other_links.length" class="more-links">
             <a v-for="(link, linkIndex) in layout.other_links" :key="linkIndex" :href="link.other_link.url" class="link">{{ link.other_link_text }}</a>
           </div>
         </div>
       </div>
-      <a href="./" class="logo">
-        <svg class="icon icon-logo"><use xlink:href="#icon-logo" /></svg>
-      </a>
       <div class="wrapper-about">
-        <a href="#" @click.stop.prevent="handleAbout">{{ layout.about_text }}</a>
+        <a href="./" class="logo">
+            <svg class="icon icon-logo"><use xlink:href="#icon-logo" /></svg>
+        </a>
       </div>
     </div>
   </header>
@@ -32,19 +31,16 @@ export default {
         layout() {
             return this.$store.state.layout;
         }
-    },
-    methods: {
-        handleAbout() {
-            this.showAbout = !this.showAbout;
-        }
     }
 };
 </script>
 
 <style scoped lang='scss'>
 .header {
-    position: relative;
-    margin: 0 0 145px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
     padding: 20px 0 0 0;
     color: $secondary-light;
     z-index: 2;
@@ -54,7 +50,7 @@ export default {
         top: 0;
         left: 0;
         width: 100%;
-        height: 270px;
+        height: 190px;
         background: $gradient;
         z-index: -1;
         pointer-events: none;
@@ -64,10 +60,6 @@ export default {
         align-items: flex-start;
         justify-content: space-between;
     }
-}
-.infos,
-.wrapper-about {
-    width: calc(50% - 39px);
 }
 .name,
 .job {
@@ -81,6 +73,7 @@ export default {
 .mail {
     display: inline-block;
     margin-top: 20px;
+    color: $primary-light;
 }
 .more-links {
     display: flex;
@@ -97,8 +90,9 @@ export default {
 }
 .logo {
     flex: 0 0 auto;
-    width: 78px;
-    height: 125px;
+    width: 35px;
+    height: 55px;
+    margin: -9px 0 0;
     color: $secondary;
     .icon {
         width: 100%;
@@ -109,28 +103,5 @@ export default {
     display: flex;
     align-items: flex-start;
     justify-content: flex-end;
-}
-
-@media (max-width: $phone) {
-    .header {
-        .container {
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-    }
-    .infos,
-    .wrapper-about {
-        width: 50%;
-    }
-    .infos {
-        order: 1;
-    }
-    .logo {
-        order: 3;
-        margin-top: 20px;
-    }
-    .wrapper-about {
-        order: 2;
-    }
 }
 </style>

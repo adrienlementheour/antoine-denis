@@ -1,10 +1,6 @@
 /* Grid */
 
-.container{
-    max-width: 1200px;
-    padding: 0 $gutter;
-    margin: 0 auto;
-    &.large{
-        max-width: 100%;
-    }
+.container {
+  padding: 0 $gutter;
+  margin: 0 auto;
 }

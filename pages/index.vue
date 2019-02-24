@@ -1,48 +1,8 @@
 <template>
   <section class="container">
     <div>
-      <div class="projects">
-        <div v-for="(project, projectIndex) in projects" :key="projectIndex" :class="{'half' : project.data.width === '50%'}" class="project">
-          <div v-if="project.data.slider.length == 1">
-            <!-- Only one file, image or video -->
-            <!-- <div v-if="Object.keys(project.data.slider[0].slider_video).length > 0" :style="{maxWidth: project.data.slider[0].slider_video.width + 'px'}" class="wrapper-video"> -->
-            <div v-if="Object.keys(project.data.slider[0].slider_video).length > 0" class="wrapper-video">
-              <!-- Video -->
-              <div :style="{paddingBottom: (project.data.slider[0].slider_video.height / project.data.slider[0].slider_video.width) * 100 + '%'}" class="box-video" />
-              <div class="content-video" v-html="project.data.slider[0].slider_video.html" />
-            </div>
-            <div v-else-if="Object.keys(project.data.slider[0].slider_image).length > 0">
-              <!-- Image -->
-              <img :src="project.data.slider[0].slider_image.url" :alt="project.data.slider[0].slider_image.alt">
-            </div>
-          </div>
-          <div v-else>
-            <!-- More than one file => slider -->
-            <div v-swiper="{
-              loop: true,
-              slidesPerView: 'auto',
-              centeredSlides: true,
-              spaceBetween: 30,
-              pagination: {
-                el: '.swiper-pagination-'+projectIndex,
-                type: 'fraction'
-              }
-            }" :instanceName="'instance-'+projectIndex">
-              <div class="swiper-wrapper">
-                <div v-for="(singleslide, index) in project.data.slider" :key="index" class="swiper-slide">
-                  <div v-if="Object.keys(singleslide.slider_video).length > 0" :style="{maxWidth: singleslide.slider_video.width + 'px'}" class="wrapper-video">
-                    <!-- Video -->
-                    <div :style="{paddingBottom: (singleslide.slider_video.height / singleslide.slider_video.width) * 100 + '%'}" class="box-video" />
-                    <div class="content-video" v-html="singleslide.slider_video.html" />
-                  </div>
-                  <div v-else-if="Object.keys(singleslide.slider_image).length > 0">
-                    <!-- Image -->
-                    <img :src="singleslide.slider_image.url" :alt="singleslide.slider_image.alt">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+      <div class="projects" :class="{'touch-device': touchDevice}">
+        <div v-for="(project, projectIndex) in projects" :key="projectIndex" class="project">
           <div class="project-infos">
             <div class="project-details">
               <h3 v-if="project.data.name[0].text" class="project-name">{{ project.data.name[0].text }}</h3>
@@ -50,6 +10,43 @@
               <span v-if="project.data.year" class="project-year">{{ project.data.year }}</span>
             </div>
             <div :class="'swiper-pagination-'+projectIndex" class="swiper-pagination" />
+          </div>
+          <div class="project-content">
+            <div v-if="project.data.slider.length == 1">
+              <!-- Only one file, image or video -->
+              <div v-if="Object.keys(project.data.slider[0].slider_video).length > 0" v-html="project.data.slider[0].slider_video.html" class="wrapper-video">
+                <!-- Video -->
+              </div>
+              <div v-else-if="Object.keys(project.data.slider[0].slider_image).length > 0" class='wrapper-img' ref='wrapperImg'>
+                <!-- Image -->
+                <img :src="project.data.slider[0].slider_image.url" :alt="project.data.slider[0].slider_image.alt">
+              </div>
+            </div>
+            <div v-else>
+              <!-- More than one file => slider -->
+              <div v-swiper="{
+                loop: true,
+                slidesPerView: 'auto',
+                centeredSlides: true,
+                spaceBetween: 30,
+                pagination: {
+                  el: '.swiper-pagination-'+projectIndex,
+                  type: 'fraction'
+                }
+              }" :instanceName="'instance-'+projectIndex">
+                <div class="swiper-wrapper">
+                  <div v-for="(singleslide, index) in project.data.slider" :key="index" class="swiper-slide">
+                    <div v-if="Object.keys(singleslide.slider_video).length > 0" :style="{maxWidth: singleslide.slider_video.width + 'px'}" class="wrapper-video" v-html="singleslide.slider_video.html">
+                      <!-- Video -->
+                    </div>
+                    <div v-else-if="Object.keys(singleslide.slider_image).length > 0" class='wrapper-img' ref='wrapperImg'>
+                      <!-- Image -->
+                      <img :src="singleslide.slider_image.url" :alt="singleslide.slider_image.alt">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -61,6 +58,13 @@
 import Prismic from 'prismic-javascript';
 
 export default {
+    data() {
+        return {
+            wrapperImg: null,
+            imageSource: null,
+            touchDevice: false
+        };
+    },
     async asyncData() {
         var apiEndpoint = 'https://antoine-denis.cdn.prismic.io/api/v2';
         let projects = {};
@@ -76,6 +80,30 @@ export default {
             });
 
         return { projects };
+    },
+    methods: {
+        checkTouchDevice() {
+            return 'ontouchstart' in document.documentElement;
+        }
+    },
+    mounted: function() {
+        // Detect objectFit support
+        if ('objectFit' in document.documentElement.style === false) {
+            // assign HTMLCollection with parents of images with objectFit to variable
+            this.wrapperImg = this.$refs.wrapperImg;
+            // Loop through HTMLCollection
+            for (var i = 0; i < this.wrapperImg.length; i++) {
+                // Asign image source to variable
+                this.imageSource = this.wrapperImg[i].querySelector('img').src;
+                this.wrapperImg[i].querySelector('img').style.display = 'none';
+                this.wrapperImg[i].style.backgroundSize = 'cover';
+                this.wrapperImg[i].style.backgroundImage = 'url(' + this.imageSource + ')';
+                this.wrapperImg[i].style.backgroundPosition = 'center center';
+            }
+        }
+        if (this.checkTouchDevice()) {
+            this.touchDevice = true;
+        }
     }
 };
 </script>
@@ -91,5 +119,117 @@ export default {
     top: auto;
     right: auto;
     text-align: right;
+}
+.swiper-container {
+    height: 100%;
+}
+/* Projects */
+.projects {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    &:not(.touch-device) {
+        .project-infos {
+            opacity: 0;
+        }
+        .project {
+            &:hover {
+                .project-infos {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+.project {
+    width: calc(50% - 10px);
+    margin: 10px 0;
+    .wrapper-video,
+    img {
+        width: 100%;
+    }
+}
+.project-content {
+    position: relative;
+    &:before {
+        content: '';
+        display: block;
+        width: 100%;
+        padding-bottom: 73.3333%;
+    }
+    > div {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+}
+.wrapper-img {
+    width: 100%;
+    height: 100%;
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+.wrapper-video {
+    width: 100%;
+    height: 100%;
+    background: $black;
+    /deep/ iframe,
+    /deep/ embed,
+    /deep/ object {
+        width: 100%;
+        height: 100%;
+    }
+}
+.project-infos {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin: 0 0 5px;
+    transition: opacity $transition;
+}
+.project-details {
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-start;
+    > * {
+        margin-right: 25px;
+    }
+}
+.project-name {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 1.5rem;
+    font-family: $suisse;
+    font-weight: 500;
+    font-style: italic;
+}
+
+@media (max-width: $desktop-small) {
+    .projects {
+        &:not(.touch-device) {
+            .project-infos {
+                opacity: 1;
+            }
+        }
+    }
+    .project {
+        width: 100%;
+    }
+}
+
+@media (max-width: $phone) {
+    .project-details {
+        flex-direction: column;
+        margin-right: 35px;
+        > * {
+            margin-right: 0;
+        }
+    }
 }
 </style>
