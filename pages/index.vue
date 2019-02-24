@@ -191,6 +191,7 @@ export default {
     position: absolute;
     top: -20px;
     left: 0;
+    right: 0;
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
@@ -234,6 +235,7 @@ export default {
         position: relative;
         top: auto;
         left: auto;
+        right: auto;
     }
     .project-details {
         flex-direction: column;
