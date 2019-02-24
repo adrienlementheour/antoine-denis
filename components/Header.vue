@@ -51,7 +51,8 @@ export default {
         left: 0;
         width: 100%;
         height: 190px;
-        background: $gradient;
+        background: url('~static/bg-gradient.png') repeat-x 0 0;
+        background-size: auto 100%;
         z-index: -1;
         pointer-events: none;
     }
