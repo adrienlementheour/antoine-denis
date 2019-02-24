@@ -32,6 +32,10 @@
                 pagination: {
                   el: '.swiper-pagination-'+projectIndex,
                   type: 'fraction'
+                },
+                navigation: {
+                  nextEl: '.btn-slider-next-'+projectIndex,
+                  prevEl: '.btn-slider-prev-'+projectIndex
                 }
               }" :instanceName="'instance-'+projectIndex">
                 <div class="swiper-wrapper">
@@ -46,6 +50,8 @@
                   </div>
                 </div>
               </div>
+              <div class='btn-slider btn-slider-next' :class="'btn-slider-next-'+projectIndex"></div>
+              <div class='btn-slider btn-slider-prev' :class="'btn-slider-prev-'+projectIndex"></div>
             </div>
           </div>
         </div>
@@ -123,12 +129,39 @@ export default {
 .swiper-container {
     height: 100%;
 }
+.swiper-wrapper {
+    position: relative;
+}
+.btn-slider {
+    display: block;
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    &:focus {
+        outline: none;
+    }
+    &.btn-slider-next {
+        right: 0;
+        cursor: e-resize;
+    }
+    &.btn-slider-prev {
+        left: 0;
+        cursor: w-resize;
+    }
+}
 /* Projects */
 .projects {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+    &.touch-device {
+        .btn-slider {
+            display: none;
+        }
+    }
     &:not(.touch-device) {
         .project-infos {
             opacity: 0;
