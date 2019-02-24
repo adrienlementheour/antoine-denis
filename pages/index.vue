@@ -28,7 +28,7 @@
                 loop: true,
                 slidesPerView: 'auto',
                 centeredSlides: true,
-                spaceBetween: 30,
+                spaceBetween: 20,
                 pagination: {
                   el: '.swiper-pagination-'+projectIndex,
                   type: 'fraction'
