@@ -68,11 +68,11 @@ export default {
     font-weight: normal;
 }
 .job {
-    margin-top: 5px;
+    margin-top: 2px;
 }
 .mail {
     display: inline-block;
-    margin-top: 20px;
+    margin-top: 22px;
     color: $primary-light;
 }
 .more-links {
