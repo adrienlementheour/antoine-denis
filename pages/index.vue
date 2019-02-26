@@ -78,7 +78,7 @@ export default {
         const api = await Prismic.getApi(apiEndpoint);
         await api
             .query(Prismic.Predicates.at('document.type', 'projet'), {
-                orderings: '[my.projet.date desc]'
+                orderings: '[document.last_publication_date desc]'
             })
             .then(function(response) {
                 // response is the response object, response.results holds the documents
