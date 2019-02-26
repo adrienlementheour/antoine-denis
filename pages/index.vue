@@ -229,6 +229,7 @@ export default {
     align-items: flex-start;
     justify-content: space-between;
     line-height: 20px;
+    z-index: 2;
 }
 .project-details {
     display: flex;
