@@ -24,13 +24,13 @@
             </div>
             <div v-else>
               <!-- More than one file => slider -->
-              <div v-swiper="{
+              <div ref='mySwiper' v-swiper="{
                 loop: true,
                 slidesPerView: 'auto',
                 centeredSlides: true,
                 spaceBetween: 20,
                 effect: 'slide',
-                speed: speedAnim,
+                speed: 0,
                 pagination: {
                   el: '.swiper-pagination-'+projectIndex,
                   type: 'fraction'
@@ -70,8 +70,7 @@ export default {
         return {
             wrapperImg: null,
             imageSource: null,
-            touchDevice: false,
-            speedAnim: 0
+            touchDevice: false
         };
     },
     async asyncData() {
@@ -95,6 +94,11 @@ export default {
             return 'ontouchstart' in document.documentElement;
         }
     },
+    computed: {
+        swipers() {
+            return this.$refs.mySwiper;
+        }
+    },
     mounted: function() {
         // Detect objectFit support
         if ('objectFit' in document.documentElement.style === false) {
@@ -112,7 +116,9 @@ export default {
         }
         if (this.checkTouchDevice()) {
             this.touchDevice = true;
-            this.speedAnim = 300;
+            this.swipers.forEach(el => {
+                el.swiper.params.speed = 300;
+            });
         }
     }
 };
