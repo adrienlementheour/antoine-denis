@@ -91,10 +91,10 @@ export default {
 }
 .logo {
     flex: 0 0 auto;
-    width: 35px;
-    height: 55px;
-    margin: -7px -7px 0 0;
-    color: $secondary;
+    width: 26px;
+    height: 42px;
+    margin: -7px -5px 0 0;
+    color: $secondary-light;
     .icon {
         width: 100%;
         height: 100%;
