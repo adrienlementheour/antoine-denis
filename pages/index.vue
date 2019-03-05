@@ -29,6 +29,8 @@
                 slidesPerView: 'auto',
                 centeredSlides: true,
                 spaceBetween: 20,
+                effect: 'slide',
+                speed: speedAnim,
                 pagination: {
                   el: '.swiper-pagination-'+projectIndex,
                   type: 'fraction'
@@ -68,7 +70,8 @@ export default {
         return {
             wrapperImg: null,
             imageSource: null,
-            touchDevice: false
+            touchDevice: false,
+            speedAnim: 0
         };
     },
     async asyncData() {
@@ -109,6 +112,7 @@ export default {
         }
         if (this.checkTouchDevice()) {
             this.touchDevice = true;
+            this.speedAnim = 300;
         }
     }
 };
