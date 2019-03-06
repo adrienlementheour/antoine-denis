@@ -291,10 +291,6 @@ export default {
 }
 
 @media (max-width: $phone) {
-    .project {
-        margin: 0;
-    }
-
     .project-details {
         flex-wrap: wrap;
     }
