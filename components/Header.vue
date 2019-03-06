@@ -105,4 +105,10 @@ export default {
     align-items: flex-start;
     justify-content: flex-end;
 }
+
+@media (max-width: $desktop-small) {
+    .header {
+        padding-top: 10px;
+    }
+}
 </style>

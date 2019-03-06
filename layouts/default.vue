@@ -33,4 +33,9 @@ export default {
 .main {
     padding: 190px 0 0;
 }
+@media (max-width: $desktop-small) {
+    .main {
+        padding: 130px 0 0;
+    }
+}
 </style>

@@ -277,25 +277,27 @@ export default {
     }
     .project {
         width: 100%;
-    }
-}
-
-@media (max-width: $phone) {
-    .project {
-        margin: 0;
+        &:nth-child(2) {
+            margin-top: 20px;
+        }
     }
     .project-infos {
         position: relative;
         top: auto;
         left: auto;
         right: auto;
+        margin-bottom: 5px;
     }
+}
+
+@media (max-width: $phone) {
     .project-details {
-        flex-direction: column;
-        margin-right: 35px;
-        > * {
-            margin-right: 0;
-        }
+        flex-wrap: wrap;
+        // flex-direction: column;
+        // margin-right: 35px;
+        // > * {
+        //     margin-right: 0;
+        // }
     }
 }
 </style>

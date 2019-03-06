@@ -4,3 +4,9 @@
   padding: 0 $gutter;
   margin: 0 auto;
 }
+
+@media (max-width: $desktop-small) {
+  .container {
+    padding: 0 $gutter/2;
+  }
+}
