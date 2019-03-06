@@ -191,7 +191,13 @@ export default {
 .project {
     position: relative;
     width: calc(50% - 10px);
-    margin: 0 0 20px;
+    margin-top: 20px;
+    &:first-child {
+        margin-top: 0;
+    }
+    &:nth-child(2) {
+        margin-top: 0;
+    }
     .wrapper-video,
     img {
         width: 100%;

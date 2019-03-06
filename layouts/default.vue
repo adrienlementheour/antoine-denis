@@ -4,6 +4,7 @@
     <main role="main" class="main">
       <nuxt/>
     </main>
+    <Footer/>
     <svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
       <defs>
         <symbol id="icon-logo" viewBox="0 0 20 32">
@@ -18,21 +19,18 @@
 
 <script>
 import Header from '~/components/Header';
+import Footer from '~/components/Footer';
 
 export default {
     components: {
-        Header
+        Header,
+        Footer
     }
 };
 </script>
 
 <style scoped lang='scss'>
 .main {
-    padding: 190px 0 300px;
-}
-@media (max-width: $phone) {
-    .main {
-        padding: 190px 0 200px;
-    }
+    padding: 190px 0 0;
 }
 </style>
