@@ -291,13 +291,12 @@ export default {
 }
 
 @media (max-width: $phone) {
+    .project {
+        margin: 0;
+    }
+
     .project-details {
         flex-wrap: wrap;
-        // flex-direction: column;
-        // margin-right: 35px;
-        // > * {
-        //     margin-right: 0;
-        // }
     }
 }
 </style>

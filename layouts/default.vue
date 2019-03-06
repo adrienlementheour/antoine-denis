@@ -32,6 +32,18 @@ export default {
 <style scoped lang='scss'>
 .main {
     padding: 190px 0 0;
+    &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 190px;
+        background: url('~static/bg-gradient.png') repeat-x 0 0;
+        background-size: auto 100%;
+        z-index: -1;
+        pointer-events: none;
+    }
 }
 @media (max-width: $desktop-small) {
     .main {
