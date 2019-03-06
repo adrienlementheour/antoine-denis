@@ -8,6 +8,9 @@
               <h3 v-if="project.data.name[0].text" class="project-name">{{ project.data.name[0].text }}</h3>
               <span v-if="project.data.type" class="project-type">{{ project.data.type }}</span>
               <span v-if="project.data.year" class="project-year">{{ project.data.year }}</span>
+              <span v-for="(info, index) in project.data.other_infos" :key="index">
+                {{info.other_info}}
+              </span>
             </div>
             <div :class="'swiper-pagination-'+projectIndex" class="swiper-pagination" />
           </div>
