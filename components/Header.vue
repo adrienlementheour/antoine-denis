@@ -78,6 +78,7 @@ export default {
     }
 }
 .logo {
+    display: none;
     flex: 0 0 auto;
     width: 26px;
     height: 42px;
