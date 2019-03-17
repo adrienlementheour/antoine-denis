@@ -47,7 +47,7 @@ export default {
 }
 @media (max-width: $desktop-small) {
     .main {
-        padding: 130px 0 0;
+        padding: 150px 0 0;
     }
 }
 </style>

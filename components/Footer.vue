@@ -35,4 +35,9 @@ export default {
         margin-left: 25px;
     }
 }
+@media (max-width: $desktop-small) {
+    .footer {
+        margin-top: 20px;
+    }
+}
 </style>

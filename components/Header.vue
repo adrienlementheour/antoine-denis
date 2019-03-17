@@ -81,7 +81,7 @@ export default {
     flex: 0 0 auto;
     width: 26px;
     height: 42px;
-    margin: -7px -5px 0 0;
+    margin: -7px -7px 0 0;
     color: $secondary-light;
     .icon {
         width: 100%;
@@ -97,6 +97,9 @@ export default {
 @media (max-width: $desktop-small) {
     .header {
         padding-top: 10px;
+    }
+    .logo {
+        margin: -5px -5px 0 0;
     }
 }
 </style>
