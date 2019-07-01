@@ -7,7 +7,10 @@
           <h2 v-if="layout.description.length == 1" class="job">{{ layout.description[0].text }}</h2>
           <a v-if="layout.email" :href="layout.email.url" class="mail">{{ layout.email_text }}</a>
           <div v-if="layout.other_links.length" class="more-links">
-            <a v-for="(link, linkIndex) in layout.other_links" :key="linkIndex" :href="link.other_link.url" class="link">{{ link.other_link_text }}</a>
+              <div v-for="(link, linkIndex) in layout.other_links" :key="linkIndex">
+                  <a v-if="link.other_link.target === '_blank'" target="_blank" rel="noopener noreferrer" :href="link.other_link.url" class="link">{{ link.other_link_text }}</a>
+                  <a v-else :href="link.other_link.url" class="link">{{ link.other_link_text }}</a>
+              </div>
           </div>
         </div>
       </div>
@@ -69,12 +72,14 @@ export default {
     align-items: center;
     justify-content: flex-start;
     margin-top: 20px;
-    > a {
-        color: $primary-light;
+    > div {
         margin-right: 20px;
         &:last-child {
             margin-right: 0;
         }
+    }
+    a {
+        color: $primary-light;
     }
 }
 .logo {
