@@ -1,15 +1,15 @@
 <template>
   <section class="container">
     <div>
-      <div class="projects" :class="{'touch-device': touchDevice}">
+      <div :class="{'touch-device': touchDevice}" class="projects">
         <div v-for="(project, projectIndex) in projects" :key="projectIndex" class="project">
           <div class="project-infos">
             <div class="project-details">
-              <h3 v-if="project.data.name[0].text" class="project-name">{{ project.data.name[0].text }}</h3>
+              <h3 v-if="project.data.name[0]" class="project-name">{{ project.data.name[0].text }}</h3>
               <span v-if="project.data.type" class="project-type">{{ project.data.type }}</span>
               <span v-if="project.data.year" class="project-year">{{ project.data.year }}</span>
               <span v-for="(info, index) in project.data.other_infos" :key="index">
-                {{info.other_info}}
+                {{ info.other_info }}
               </span>
             </div>
             <div :class="'swiper-pagination-'+projectIndex" class="swiper-pagination" />
@@ -17,17 +17,17 @@
           <div class="project-content">
             <div v-if="project.data.slider.length == 1">
               <!-- Only one file, image or video -->
-              <div v-if="Object.keys(project.data.slider[0].slider_video).length > 0" v-html="project.data.slider[0].slider_video.html" class="wrapper-video">
+              <div v-if="Object.keys(project.data.slider[0].slider_video).length > 0" class="wrapper-video" v-html="project.data.slider[0].slider_video.html">
                 <!-- Video -->
               </div>
-              <div v-else-if="Object.keys(project.data.slider[0].slider_image).length > 0" class='wrapper-img' ref='wrapperImg'>
+              <div v-else-if="Object.keys(project.data.slider[0].slider_image).length > 0" ref="wrapperImg" class="wrapper-img">
                 <!-- Image -->
                 <img :src="project.data.slider[0].slider_image.url" :alt="project.data.slider[0].slider_image.alt">
               </div>
             </div>
             <div v-else>
               <!-- More than one file => slider -->
-              <div ref='mySwiper' v-swiper="{
+              <div v-swiper="{
                 loop: true,
                 slidesPerView: 'auto',
                 centeredSlides: true,
@@ -42,21 +42,21 @@
                   nextEl: '.btn-slider-next-'+projectIndex,
                   prevEl: '.btn-slider-prev-'+projectIndex
                 }
-              }" :instanceName="'instance-'+projectIndex">
+              }" ref="mySwiper" :instanceName="'instance-'+projectIndex">
                 <div class="swiper-wrapper">
                   <div v-for="(singleslide, index) in project.data.slider" :key="index" class="swiper-slide">
                     <div v-if="Object.keys(singleslide.slider_video).length > 0" :style="{maxWidth: singleslide.slider_video.width + 'px'}" class="wrapper-video" v-html="singleslide.slider_video.html">
                       <!-- Video -->
                     </div>
-                    <div v-else-if="Object.keys(singleslide.slider_image).length > 0" class='wrapper-img' ref='wrapperImg'>
+                    <div v-else-if="Object.keys(singleslide.slider_image).length > 0" ref="wrapperImg" class="wrapper-img">
                       <!-- Image -->
                       <img :src="singleslide.slider_image.url" :alt="singleslide.slider_image.alt">
                     </div>
                   </div>
                 </div>
               </div>
-              <div class='btn-slider btn-slider-next' :class="'btn-slider-next-'+projectIndex"></div>
-              <div class='btn-slider btn-slider-prev' :class="'btn-slider-prev-'+projectIndex"></div>
+              <div :class="'btn-slider-next-'+projectIndex" class="btn-slider btn-slider-next"/>
+              <div :class="'btn-slider-prev-'+projectIndex" class="btn-slider btn-slider-prev"/>
             </div>
           </div>
         </div>
@@ -92,11 +92,6 @@ export default {
 
         return { projects };
     },
-    methods: {
-        checkTouchDevice() {
-            return 'ontouchstart' in document.documentElement;
-        }
-    },
     computed: {
         swipers() {
             return this.$refs.mySwiper;
@@ -122,6 +117,11 @@ export default {
             this.swipers.forEach(el => {
                 el.swiper.params.speed = 300;
             });
+        }
+    },
+    methods: {
+        checkTouchDevice() {
+            return 'ontouchstart' in document.documentElement;
         }
     }
 };
