@@ -7,16 +7,16 @@
           <h2 v-if="layout.description.length == 1" class="job">{{ layout.description[0].text }}</h2>
           <a v-if="layout.email" :href="layout.email.url" class="mail">{{ layout.email_text }}</a>
           <div v-if="layout.other_links.length" class="more-links">
-              <div v-for="(link, linkIndex) in layout.other_links" :key="linkIndex">
-                  <a v-if="link.other_link.target === '_blank'" target="_blank" rel="noopener noreferrer" :href="link.other_link.url" class="link">{{ link.other_link_text }}</a>
-                  <a v-else :href="link.other_link.url" class="link">{{ link.other_link_text }}</a>
-              </div>
+            <div v-for="(link, linkIndex) in layout.other_links" :key="linkIndex">
+              <a v-if="link.other_link.target === '_blank'" :href="link.other_link.url" target="_blank" rel="noopener noreferrer" class="link">{{ link.other_link_text }}</a>
+              <a v-else :href="link.other_link.url" class="link">{{ link.other_link_text }}</a>
+            </div>
           </div>
         </div>
       </div>
       <div class="wrapper-about">
         <a href="./" class="logo">
-            <svg class="icon icon-logo"><use xlink:href="#icon-logo" /></svg>
+          <svg class="icon icon-logo"><use xlink:href="#icon-logo" /></svg>
         </a>
       </div>
     </div>
@@ -45,7 +45,7 @@ export default {
     left: 0;
     right: 0;
     padding: 20px 0 0 0;
-    color: $secondary-light;
+    color: $primary-light;
     z-index: 2;
     .container {
         display: flex;
@@ -65,7 +65,6 @@ export default {
 .mail {
     display: inline-block;
     margin-top: 22px;
-    color: $primary-light;
 }
 .more-links {
     display: flex;
