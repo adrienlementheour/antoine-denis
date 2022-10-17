@@ -1,11 +1,11 @@
 <template>
   <footer class="footer">
     <div class="container">
-        <div class='wrapper-txt'>
-            <span v-for="(footerTxt, index) in layout.footer_content" :key="index">
-                {{footerTxt.text}}
-            </span>
-        </div>
+      <div class="wrapper-txt">
+        <span v-for="(footerTxt, index) in layout.footer_content" :key="index">
+          {{ footerTxt.text }}
+        </span>
+      </div>
     </div>
   </footer>
 </template>
