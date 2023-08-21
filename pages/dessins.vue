@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div class="container-dessins">
+    <div :class="{'touch-device': touchDevice}" class="container-dessins">
       <div class="wrapper-dessins">
         <div class="wrapper-logo-dessins">
           <div class="w-logo">
@@ -50,8 +50,17 @@ export default {
                     nextEl: '.btn-slider-next',
                     prevEl: '.btn-slider-prev'
                 }
-            }
+            },
+            touchDevice: false
         };
+    },
+    mounted: function() {
+        if (this.checkTouchDevice()) {
+            this.touchDevice = true;
+            this.swipers.forEach(el => {
+                el.swiper.params.speed = 300;
+            });
+        }
     },
     async asyncData() {
         var apiEndpoint = 'https://antoine-denis.cdn.prismic.io/api/v2';
@@ -74,6 +83,9 @@ export default {
         openDessin(index) {
             if (!this.showSlider) this.showSlider = true;
             this.$refs.mySwiper.swiper.slideTo(index, 0);
+        },
+        checkTouchDevice() {
+            return 'ontouchstart' in document.documentElement;
         }
     }
 };
@@ -82,6 +94,11 @@ export default {
 <style scoped lang='scss'>
 .container-dessins {
     position: relative;
+    &.touch-device {
+        .btn-slider {
+            display: none;
+        }
+    }
 }
 
 // Swiper
