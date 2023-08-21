@@ -45,7 +45,7 @@ export default {
     left: 0;
     right: 0;
     padding: 20px 0 0 0;
-    color: $primary-light;
+    color: #02ce2d;
     z-index: 2;
     .container {
         display: flex;
@@ -78,7 +78,7 @@ export default {
         }
     }
     a {
-        color: $primary-light;
+        color: #9201ee;
     }
 }
 .logo {
