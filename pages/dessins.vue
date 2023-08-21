@@ -3,7 +3,9 @@
     <div class="container-dessins">
       <div class="wrapper-dessins">
         <div class="wrapper-logo-dessins">
-          Logo dessins
+          <div class="w-logo">
+            <img :src="data.dessins_logo.url" :alt="data.dessins_logo.alt">
+          </div>
         </div>
         <div v-for="(dessin, dessinIndex) in data.dessins" :key="dessinIndex" class="dessin" @click="openDessin(dessinIndex)">
           <img :src="dessin.dessin.url" :alt="dessin.dessin.alt" class="img-dessin">
@@ -17,6 +19,8 @@
             </div>
           </div>
         </div>
+        <div class="btn-slider btn-slider-next"/>
+        <div class="btn-slider btn-slider-prev"/>
       </div>
     </div>
   </section>
@@ -41,7 +45,11 @@ export default {
                 spaceBetween: 20,
                 effect: 'slide',
                 speed: 0,
-                keyboard: true
+                keyboard: true,
+                navigation: {
+                    nextEl: '.btn-slider-next',
+                    prevEl: '.btn-slider-prev'
+                }
             }
         };
     },
@@ -81,8 +89,8 @@ export default {
     position: fixed;
     top: 15px;
     height: calc(100vh - 30px);
-    left: calc(#{percentage(3/11)} + 15px);
-    right: calc(#{percentage(3/11)} + 15px);
+    left: 15px;
+    right: 15px;
     background: $grey-dark;
     border: 1px solid yellow;
     opacity: 0;
@@ -135,30 +143,92 @@ export default {
 /* Projects */
 .wrapper-dessins {
     display: grid;
-    grid-template-columns: repeat(11, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 30px;
     padding: 15px;
 }
 .wrapper-logo-dessins {
     grid-column-start: 1;
-    grid-column-end: 4;
-    grid-row-start: 1;
-    grid-row-end: 3;
-    background: grey;
+    grid-column-end: 3;
+    aspect-ratio: 2 / 1;
     display: flex;
     align-items: center;
     justify-content: center;
     float: left;
+    position: relative;
+    border: 1px solid red;
+    .w-logo {
+        position: absolute;
+        inset: 0;
+    }
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
 }
 .dessin {
-    // width: percentage(1/11);
     aspect-ratio: 1 / 1;
-    // padding: 15px;
     border: 1px solid red;
     img {
         width: 100%;
         height: 100%;
         object-fit: contain;
+    }
+}
+
+@media (min-width: $phone) {
+    .wrapper-dessins {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .wrapper-logo-dessins {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        aspect-ratio: auto;
+    }
+}
+@media (min-width: $tablet) {
+    .container-swiper {
+        left: calc(#{percentage(1/5)} + 15px);
+        right: calc(#{percentage(1/5)} + 15px);
+    }
+    .wrapper-dessins {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+@media (min-width: $desktop-small) {
+    .container-swiper {
+        left: calc(#{percentage(2/7)} + 15px);
+        right: calc(#{percentage(2/7)} + 15px);
+    }
+    .wrapper-dessins {
+        grid-template-columns: repeat(7, 1fr);
+    }
+    .wrapper-logo-dessins {
+        grid-column-start: 1;
+        grid-column-end: 4;
+        grid-row-start: 1;
+        grid-row-end: 3;
+    }
+}
+@media (min-width: $desktop) {
+    .container-swiper {
+        left: calc(#{percentage(2/8)} + 15px);
+        right: calc(#{percentage(2/8)} + 15px);
+    }
+    .wrapper-dessins {
+        grid-template-columns: repeat(8, 1fr);
+    }
+}
+@media (min-width: $desktop-large) {
+    .container-swiper {
+        left: calc(#{percentage(3/11)} + 15px);
+        right: calc(#{percentage(3/11)} + 15px);
+    }
+    .wrapper-dessins {
+        grid-template-columns: repeat(11, 1fr);
     }
 }
 </style>
