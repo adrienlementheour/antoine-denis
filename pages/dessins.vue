@@ -31,6 +31,11 @@ import Prismic from 'prismic-javascript';
 import vClickOutside from 'v-click-outside';
 
 export default {
+    head: {
+        bodyAttrs: {
+            class: 'bg-white'
+        }
+    },
     directives: {
         clickOutside: vClickOutside.directive
     },
@@ -108,8 +113,7 @@ export default {
     height: calc(100vh - 30px);
     left: 15px;
     right: 15px;
-    background: $grey-dark;
-    border: 1px solid yellow;
+    background: $white;
     opacity: 0;
     visibility: hidden;
     &.is-visible {
@@ -135,6 +139,7 @@ export default {
 }
 .swiper-slide {
     display: flex;
+    justify-content: center;
     align-items: center;
 }
 
@@ -173,7 +178,6 @@ export default {
     justify-content: center;
     float: left;
     position: relative;
-    border: 1px solid red;
     .w-logo {
         position: absolute;
         inset: 0;
@@ -186,7 +190,6 @@ export default {
 }
 .dessin {
     aspect-ratio: 1 / 1;
-    border: 1px solid red;
     img {
         width: 100%;
         height: 100%;
