@@ -21,7 +21,9 @@
         </div>
         <div class="btn-slider btn-slider-next"/>
         <div class="btn-slider btn-slider-prev"/>
-        <button class="btn-close" type="button" @click="closeSlider"/>
+        <button class="btn-close" type="button" @click="closeSlider">
+          <img src="~static/croix.gif" alt="Fermer">
+        </button>
       </div>
     </div>
   </section>
@@ -174,22 +176,6 @@ export default {
     width: 50px;
     height: 50px;
     z-index: 2;
-    &::before,
-    &::after {
-        content: '';
-        position: absolute;
-        top: calc(50% - 20px);
-        left: 50%;
-        width: 1px;
-        height: 40px;
-        background: $black;
-    }
-    &::before {
-        transform: rotate(45deg);
-    }
-    &::after {
-        transform: rotate(-45deg);
-    }
 }
 
 /* Projects */
