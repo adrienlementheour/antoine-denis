@@ -21,6 +21,7 @@
         </div>
         <div class="btn-slider btn-slider-next"/>
         <div class="btn-slider btn-slider-prev"/>
+        <button class="btn-close" type="button" @click="closeSlider"/>
       </div>
     </div>
   </section>
@@ -33,7 +34,7 @@ import vClickOutside from 'v-click-outside';
 export default {
     head: {
         bodyAttrs: {
-            class: 'bg-white'
+            class: 'bg-black'
         }
     },
     directives: {
@@ -141,6 +142,10 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    img {
+        max-height: 100%;
+        object-fit: contain;
+    }
 }
 
 .btn-slider {
@@ -162,6 +167,31 @@ export default {
         cursor: w-resize;
     }
 }
+.btn-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    z-index: 2;
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        top: calc(50% - 20px);
+        left: 50%;
+        width: 1px;
+        height: 40px;
+        background: $black;
+    }
+    &::before {
+        transform: rotate(45deg);
+    }
+    &::after {
+        transform: rotate(-45deg);
+    }
+}
+
 /* Projects */
 .wrapper-dessins {
     display: grid;
