@@ -17,9 +17,7 @@
           <div class="project-content">
             <div v-if="project.data.slider.length == 1">
               <!-- Only one file, image or video -->
-              <div v-if="Object.keys(project.data.slider[0].slider_video).length > 0" class="wrapper-video" v-html="project.data.slider[0].slider_video.html">
-                <!-- Video -->
-              </div>
+              <div v-if="Object.keys(project.data.slider[0].slider_video).length > 0" class="wrapper-video" v-html="project.data.slider[0].slider_video.html" />
               <div v-else-if="Object.keys(project.data.slider[0].slider_image).length > 0" ref="wrapperImg" class="wrapper-img">
                 <!-- Image -->
                 <img :src="project.data.slider[0].slider_image.url" :alt="project.data.slider[0].slider_image.alt">
@@ -138,6 +136,7 @@ export default {
     top: auto;
     right: auto;
     text-align: right;
+    transition: none;
 }
 .swiper-container {
     height: 100%;
@@ -176,12 +175,12 @@ export default {
         }
     }
     &:not(.touch-device) {
-        .project-infos {
+        .swiper-pagination {
             opacity: 0;
         }
         .project {
             &:hover {
-                .project-infos {
+                .swiper-pagination {
                     opacity: 1;
                 }
             }
@@ -232,9 +231,9 @@ export default {
     width: 100%;
     height: 100%;
     background: $black;
-    /deep/ iframe,
-    /deep/ embed,
-    /deep/ object {
+    :deep(iframe),
+    :deep(embed),
+    :deep(object) {
         width: 100%;
         height: 100%;
     }

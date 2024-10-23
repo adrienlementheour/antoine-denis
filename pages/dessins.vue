@@ -227,8 +227,8 @@ export default {
 }
 @media (min-width: $tablet) {
     .container-swiper {
-        left: calc(#{percentage(1/5)} + 15px);
-        right: calc(#{percentage(1/5)} + 15px);
+        left: calc(#{math.div(1, 5) * 100%} + 15px);
+        right: calc(#{math.div(1, 5) * 100%} + 15px);
     }
     .wrapper-dessins {
         grid-template-columns: repeat(5, 1fr);
@@ -236,8 +236,8 @@ export default {
 }
 @media (min-width: $desktop-small) {
     .container-swiper {
-        left: calc(#{percentage(2/7)} + 15px);
-        right: calc(#{percentage(2/7)} + 15px);
+        left: calc(#{math.div(2, 7) * 100%} + 15px);
+        right: calc(#{math.div(2, 7) * 100%} + 15px);
     }
     .wrapper-dessins {
         grid-template-columns: repeat(7, 1fr);
@@ -251,8 +251,8 @@ export default {
 }
 @media (min-width: $desktop) {
     .container-swiper {
-        left: calc(#{percentage(2/8)} + 15px);
-        right: calc(#{percentage(2/8)} + 15px);
+        left: calc(#{math.div(2, 8) * 100%} + 15px);
+        right: calc(#{math.div(2, 8) * 100%} + 15px);
     }
     .wrapper-dessins {
         grid-template-columns: repeat(8, 1fr);
@@ -260,8 +260,8 @@ export default {
 }
 @media (min-width: $desktop-large) {
     .container-swiper {
-        left: calc(#{percentage(3/11)} + 15px);
-        right: calc(#{percentage(3/11)} + 15px);
+        left: calc(#{math.div(3, 11) * 100%} + 15px);
+        right: calc(#{math.div(3, 11) * 100%} + 15px);
     }
     .wrapper-dessins {
         grid-template-columns: repeat(11, 1fr);
